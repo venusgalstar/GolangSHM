@@ -1,7 +1,5 @@
 package main
 
-package shm
-
 import (
 	"reflect"
 	"unsafe"
@@ -25,8 +23,4 @@ func copyPtr2Slice(p uintptr, b []byte, off int64, size int32) int {
 
 	bb := *(*[]byte)(unsafe.Pointer(&h))
 	return copy(b, bb[off:size])
-}
-
-func main() {
-    fmt.Println("Hello, world.")
 }
