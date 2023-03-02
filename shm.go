@@ -1,10 +1,9 @@
 package main
 
-package shm
-
 import (
 	"reflect"
 	"unsafe"
+	"fmt"
 )
 
 func copySlice2Ptr(b []byte, p uintptr, off int64, size int32) int {

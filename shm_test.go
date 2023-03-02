@@ -1,4 +1,4 @@
-package shm_test
+package main_test
 
 import (
 	"io"
@@ -7,23 +7,23 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/hidez8891/shm"
+	"main"
 )
 
-func create(t *testing.T, tag string, size int32) *shm.Memory {
+func create(t *testing.T, tag string, size int32) *main.Memory {
 	t.Helper()
 
-	m, err := shm.Create(tag, size)
+	m, err := main.Create(tag, size)
 	if err != nil {
 		t.Fatalf("fail: create shared memroy %v", err)
 	}
 	return m
 }
 
-func open(t *testing.T, tag string, size int32) *shm.Memory {
+func open(t *testing.T, tag string, size int32) *main.Memory {
 	t.Helper()
 
-	m, err := shm.Open(tag, size)
+	m, err := main.Open(tag, size)
 	if err != nil {
 		t.Fatalf("fail: open shared memroy %v", err)
 	}
@@ -35,14 +35,14 @@ func TestNewOpen(t *testing.T) {
 		size := int32(1) << d
 
 		// create shared memory
-		w, err := shm.Create("test_t", size)
+		w, err := main.Create("test_t", size)
 		if err != nil {
 			t.Errorf("warn: fail create %d byte shared memroy %v", size, err)
 			continue
 		}
 
 		// open shared memory
-		r, err := shm.Open("test_t", size)
+		r, err := main.Open("test_t", size)
 		if err != nil {
 			w.Close()
 			t.Errorf("warn: fail open %d byte shared memroy %v", size, err)
